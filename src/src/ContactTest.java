@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ContactTest {
@@ -36,15 +37,19 @@ public class ContactTest {
 		StringBuilder sb = new StringBuilder();
 
 		for(Contact user:users){
-			sb.append(user.getName());
-			sb.append(user.getNumber()).append(",");
+			sb.append(user.getName()).append(",");
+			sb.append(user.getNumber()).append("\n");
 		}
 		String commaDelimeterString=sb.toString();
 		if( commaDelimeterString.length() > 0 )
 			commaDelimeterString = commaDelimeterString.substring(0, commaDelimeterString.length() - 1);
 
 
-		System.out.println(commaDelimeterString);
+		try{
+			Files.write(filePath, Collections.singleton(commaDelimeterString));
+		} catch (IOException ioe){
+			ioe.printStackTrace();
+		}
 
 
 	}
