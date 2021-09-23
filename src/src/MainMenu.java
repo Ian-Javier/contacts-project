@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,6 +42,16 @@ public class MainMenu {
 		} else if (userRequest >= 6){
 			System.out.println("You entered an invalid number choice. Please pick a correct number.");
 			mainMenu();
+		}
+
+	}
+	public void objectToString(Contact contact){
+
+		List<String> contactList = Arrays.asList(contact.getNumber());
+		try{
+			Files.write(filePath, contactList);
+		} catch (IOException ioe){
+			ioe.printStackTrace();
 		}
 	}
 }
